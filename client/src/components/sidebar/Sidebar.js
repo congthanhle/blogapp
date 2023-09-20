@@ -6,12 +6,12 @@ import "./sidebar.css";
 const URL = 'http://localhost:5000'
 
 export default function Sidebar() {
-  const [cats, setCats] = useState([]);
+  const [cats, set_cats] = useState([]);
 
   useEffect(() => {
     const getCats = async () => {
       const res = await axios.get(`${URL}/categories`);
-      setCats(res.data);
+      set_cats(res.data);
     };
     getCats();
   }, []);

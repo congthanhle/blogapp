@@ -12,7 +12,7 @@ export default function SinglePost() {
   const [post, setPost] = useState({});
   const PF = "http://localhost:5000/images/";
   const { user } = useContext(Context);
-  const [title, setTitle] = useState("");
+  const [title, set_title] = useState("");
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
 
@@ -20,7 +20,7 @@ export default function SinglePost() {
     const getPost = async () => {
       const res = await axios.get(`${URL}/posts/` + path);
       setPost(res.data);
-      setTitle(res.data.title);
+      set_title(res.data.title);
       setDesc(res.data.desc);
     };
     getPost();
@@ -58,7 +58,7 @@ export default function SinglePost() {
             value={title}
             className="singlePostTitleInput"
             autoFocus
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => set_title(e.target.value)}
           />
         ) : (
           <h1 className="singlePostTitle">
