@@ -1,9 +1,11 @@
+/** @format */
+
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.css";
 
-const URL = 'http://localhost:5000'
+const BaseURL = "http://localhost:5000";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -15,12 +17,12 @@ export default function Register() {
     e.preventDefault();
     setError(false);
     try {
-      const res = await axios.post(`${URL}/auth/register`, {
+      const res = await axios.post(`${BaseURL}/auth/register`, {
         username,
         email,
         password,
-      }); 
-      res.data && window.location.replace('/login');
+      });
+      res.data && window.location.replace("/login");
     } catch (err) {
       setError(true);
     }
@@ -59,7 +61,11 @@ export default function Register() {
           Login
         </Link>
       </button>
-      {error && <span style={{color:"red", marginTop:"10px"}}>Something went wrong!</span>}
+      {error && (
+        <span style={{ color: "red", marginTop: "10px" }}>
+          Something went wrong!
+        </span>
+      )}
     </div>
   );
 }
