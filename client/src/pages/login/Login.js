@@ -7,8 +7,8 @@ import "./login.css";
 const URL = 'http://localhost:5000'
 
 export default function Login() {
-  const userRef = useRef();
-  const passwordRef = useRef();
+  const UserRef = useRef();
+  const PasswordRef = useRef();
   const { dispatch, isFetching } = useContext(Context);
 
   const handleSubmit = async (e) => {
@@ -17,7 +17,7 @@ export default function Login() {
     try {
       const res = await axios.post(`${URL}/auth/login`, {
         username: userRef.current.value,
-        password: passwordRef.current.value,
+        password: PasswordRef.current.value,
       });
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (err) {
@@ -34,14 +34,14 @@ export default function Login() {
           type="text"
           className="loginInput"
           placeholder="Enter your username..."
-          ref={userRef}
+          ref={UserRef}
         />
         <label>Password</label>
         <input
           type="password"
           className="loginInput"
           placeholder="Enter your password..."
-          ref={passwordRef}
+          ref={PasswordRef}
         />
         <button className="loginButton" type="submit" disabled={isFetching}>
           Login

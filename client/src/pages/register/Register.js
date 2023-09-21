@@ -6,14 +6,14 @@ import "./register.css";
 const URL = 'http://localhost:5000'
 
 export default function Register() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [username, set_username] = useState("");
+  const [email, set_email] = useState("");
+  const [password, set_password] = useState("");
+  const [error, set_error] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(false);
+    set_error(false);
     try {
       const res = await axios.post(`${URL}/auth/register`, {
         username,
@@ -22,7 +22,7 @@ export default function Register() {
       }); 
       res.data && window.location.replace('/login');
     } catch (err) {
-      setError(true);
+      set_error(true);
     }
   };
   return (
@@ -34,21 +34,21 @@ export default function Register() {
           type="text"
           className="registerInput"
           placeholder="Enter your username..."
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => set_username(e.target.value)}
         />
         <label>Email</label>
         <input
           type="text"
           className="registerInput"
           placeholder="Enter your email..."
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => set_email(e.target.value)}
         />
         <label>Password</label>
         <input
           type="password"
           className="registerInput"
           placeholder="Enter your password..."
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => set_password(e.target.value)}
         />
         <button className="registerButton" type="submit">
           Register
