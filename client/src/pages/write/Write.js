@@ -1,9 +1,11 @@
+/** @format */
+
 import { useContext, useState } from "react";
 import "./write.css";
 import axios from "axios";
 import { Context } from "../../context/Context";
 
-const URL = 'http://localhost:5000';
+const URL = "http://localhost:5000";
 
 export default function Write() {
   const [title, setTitle] = useState("");
@@ -19,18 +21,18 @@ export default function Write() {
       desc,
     };
     if (file) {
-      const data =new FormData();
-      const filename = Date.now() + file.name;
-      data.append("name", filename);
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
       data.append("file", file);
-      newPost.photo = filename;
+      newPost.photo = fileName;
       try {
         await axios.post(`${URL}/upload`, data);
       } catch (err) {}
     }
     try {
       const res = await axios.post(`${URL}/posts`, newPost);
-      window.location.replace('/post/' + res.data._id);
+      window.location.replace("/post/" + res.data._id);
     } catch (err) {}
   };
   return (
@@ -54,7 +56,7 @@ export default function Write() {
             placeholder="Title"
             className="writeInput"
             autoFocus={true}
-            onChange={e=>setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="writeFormGroup">
@@ -62,7 +64,7 @@ export default function Write() {
             placeholder="Tell your story..."
             type="text"
             className="writeInput writeText"
-            onChange={e=>setDesc(e.target.value)}
+            onChange={(e) => setDesc(e.target.value)}
           ></textarea>
         </div>
         <button className="writeSubmit" type="submit">

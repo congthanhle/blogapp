@@ -1,3 +1,5 @@
+/** @format */
+
 import "./settings.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { useContext, useState } from "react";
@@ -6,18 +8,18 @@ import axios from "axios";
 
 export default function Settings() {
   const [file, setFile] = useState(null);
-  const [username, setUsername] = useState("");
+  const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
 
   const { user, dispatch } = useContext(Context);
-  const PF = "http://localhost:5000/images/"
+  const PF = "http://localhost:5000/images/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "UPDATE_START" });
-    const updatedUser = {
+    const updateUser = {
       userId: user._id,
       username,
       email,
@@ -25,16 +27,16 @@ export default function Settings() {
     };
     if (file) {
       const data = new FormData();
-      const filename = Date.now() + file.name;
-      data.append("name", filename);
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
       data.append("file", file);
-      updatedUser.profilePic = filename;
+      updateUser.profilePic = fileName;
       try {
         await axios.post("/upload", data);
       } catch (err) {}
     }
     try {
-      const res = await axios.put("/users/" + user._id, updatedUser);
+      const res = await axios.put("/users/" + user._id, updateUser);
       setSuccess(true);
       dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
     } catch (err) {
@@ -45,14 +47,14 @@ export default function Settings() {
     <div className="settings">
       <div className="settingsWrapper">
         <div className="settingsTitle">
-          <span className="settingsUpdateTitle">Update Your Account</span>
+          <span className="settingUpdateTitle">Update Your Account</span>
           <span className="settingsDeleteTitle">Delete Account</span>
         </div>
         <form className="settingsForm" onSubmit={handleSubmit}>
           <label>Profile Picture</label>
           <div className="settingsPP">
             <img
-              src={file ? URL.createObjectURL(file) : PF+user.profilePic}
+              src={file ? URL.createObjectURL(file) : PF + user.profilePic}
               alt=""
             />
             <label htmlFor="fileInput">
@@ -69,7 +71,7 @@ export default function Settings() {
           <input
             type="text"
             placeholder={user.username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUserName(e.target.value)}
           />
           <label>Email</label>
           <input

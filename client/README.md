@@ -92,4 +92,4 @@ This section has moved here:
 This section has moved here:
 [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-Thanh đa edit cai gi do o day
+Thanh đa edit cai gi do o day Thuc da edit mot thu gi do
