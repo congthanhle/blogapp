@@ -9,7 +9,7 @@ import { useLocation } from "react-router";
 const URL = 'http://localhost:5000';
 
 export default function Home() {
-  const [posts, set_posts] = useState([]);
+  const [Posts, set_posts] = useState([]);
   const { Search } = useLocation();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Home() {
     <>
       <Header />
       <div className="home">
-        <Posts posts={posts} />
+        <Posts posts={Posts} />
         <Sidebar />
       </div>
     </>
