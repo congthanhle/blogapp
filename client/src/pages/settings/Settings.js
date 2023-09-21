@@ -12,6 +12,7 @@ export default function Settings() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
+
   const { user, dispatch } = useContext(Context);
   const PF = "http://localhost:5000/images/";
 
