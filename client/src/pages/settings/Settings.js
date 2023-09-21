@@ -25,8 +25,6 @@ export default function Settings() {
       email,
       password,
     };
-
-    //upload du lieu
     if (file) {
       const dulieu = new FormData();
       const tenfile = Date.now() + file.name;
