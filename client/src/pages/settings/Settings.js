@@ -5,12 +5,12 @@ import { Context } from "../../context/Context";
 import axios from "axios";
 
 //Tên hằng viết bằng chữ in hoa
-const url = 'http://localhost:5000'
+const URL = 'http://localhost:5000'
 
 //tên hàm đặt theo PascalCase
-export default function settings() {
-// Tên biến sử dụng CamelCase
-  const [File, set_file] = useState(null);
+export default function Settings() {
+  // Tên biến sử dụng CamelCase
+  const [file, setFile] = useState(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,45 +20,47 @@ export default function settings() {
   const PF = "http://localhost:5000/images/"
 
   //tên hàm đặt không rõ nghĩa
-  const handle = async (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
     dispatch({ type: "UPDATE_START" });
 
-    const updatedUser = { userId: user._id, username, email,password};
+    const updatedUser = { userId: user._id, username, email, password };
 
+    const MALE = 0;
+    const FEMALE = 1;
     //Dùng số trực tiếp trong code
-    if (gender === 0) { 
+    if (gender === MALE) {
       console.log("Your gender is MALE");
     }
-    else if (gender === 1) { 
+    else if (gender === FEMALE) {
       console.log("Your gender is FEMALE");
     }
-    else { 
+    else {
       console.log("Your gender is ... ")
     }
 
-// Đặt tên hàm không có ý nghĩa
-const a = async () => {
-  e.preventDefault();
-  dispatch({ type: "UPDATE_START" });
-  const updatedUser = {
-    userId: user._id,
-    username,
-    email,
-    password,
-}
-}
+    // Đặt tên hàm không có ý nghĩa
+    const handleSubmitForm = async () => {
+      e.preventDefault();
+      dispatch({ type: "UPDATE_START" });
+      const updatedUser = {
+        userId: user._id,
+        username,
+        email,
+        password,
+      }
+    }
 
-    //Sai
-    if (File) {
-    const data = new FormData();
-    const filename = Date.now() + file.name;
-    data.append("name", filename);
-    data.append("file", File);
-    updatedUser.profilePic = filename;
-    try {
-      await axios.post("/upload", data);
-    } catch (err) { }
+    //Không thụt lề trong block
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", File);
+      updatedUser.profilePic = filename;
+      try {
+        await axios.post("/upload", data);
+      } catch (err) { }
     }
     try {
       const res = await axios.put("/users/" + user._id, updatedUser);
@@ -73,10 +75,11 @@ const a = async () => {
       <div className="settingsWrapper">
         <div className="settingsTitle">
           {/*một dòng quá 80 kí tự  */}
-          <span className="settingsUpdateTitle">Update Your Account</span> <span className="settingsDeleteTitle">Delete Account</span>
+          <span className="settingsUpdateTitle">Update Your Account</span> 
+          <span className="settingsDeleteTitle">Delete Account</span>
         </div>
-        <form className="settingsForm" onSubmit={handleSubmit}>
-          <label>Profile Picture</label> <div className="settingsPP"> <img src={file ? URL.createObjectURL(file) : PF + user.profilePic} alt=""/>
+        <form className="settingsForm" onSubmit={handleSubmitForm}>
+          <label>Profile Picture</label> <div className="settingsPP"> <img src={file ? URL.createObjectURL(file) : PF + user.profilePic} alt="" />
             <label htmlFor="fileInput">
               <i className="settingsPPIcon far fa-user-circle"></i>
             </label>
