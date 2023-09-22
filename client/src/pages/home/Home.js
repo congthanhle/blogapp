@@ -6,15 +6,22 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import "./home.css";
 import { useLocation } from "react-router";
 
-const URL = 'http://localhost:5000';
+//
+const url = 'http://localhost:5000';
 
-export default function Home() {
+//
+export default function home() {
+  //
   const [Posts, set_posts] = useState([]);
+
+  //
   const { Search } = useLocation();
+  
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get(`${URL}/posts` + Search);
+  //
+    const res = await axios.get(`${URL}/posts` + Search);
       set_posts(res.data);
     };
     fetchPosts();

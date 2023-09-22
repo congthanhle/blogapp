@@ -31,10 +31,7 @@ export default function Login() {
       <form className="loginForm" onSubmit={handleSubmit}>
         <label>Username</label>
         <input
-          type="text"
-          className="loginInput"
-          placeholder="Enter your username..."
-          ref={UserRef}
+          type="text" className="loginInput" placeholder="Enter your username..." ref={UserRef}
         />
         <label>Password</label>
         <input
